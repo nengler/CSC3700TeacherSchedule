@@ -22,3 +22,4 @@ Route::get('/testing', function () {
 });
 
 Route::resource('courses', 'CourseController');
+Route::resource('courses_by_semester', 'CourseBySemesterController');
