@@ -8,16 +8,16 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Class</th>
-            <th>Class Id</th>
+            <th>Year</th>
+            <th>Semester</th>
         </tr>
     </thead>
     @foreach($courses as $course)
     <tr>
-        <td>{{$course->id}}</td>
         <td>{{$course->course_title}}</td>
-        <td>{{$course->course_id}}</td>
+        <td>{{$course->year}}</td>
+        <td>{{$course->semester}}</td>
         <td>
             <form action="courses/{{$course->id}}" method="post">
                 @csrf
