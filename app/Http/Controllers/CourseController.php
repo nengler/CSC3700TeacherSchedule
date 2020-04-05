@@ -18,10 +18,6 @@ class CourseController extends Controller
 
     public function index()
     {
-        $course = course_by_semester::leftJoin('courses', 'courses.id', '=', 'course_by_semesters.course_id')
-            ->select('courses.*', 'course_by_semesters.year', 'course_by_semesters.semester')->get();
-        print($course);
-        return \View::make('overview')->with('courses', $course);
     }
     //public function index()
     //{
@@ -53,9 +49,5 @@ class CourseController extends Controller
     }
     public function destroy($id)
     {
-        $course = course::find($id);
-        $course->delete();
-        print("inside destroy");
-        return redirect("courses");
     }
 }

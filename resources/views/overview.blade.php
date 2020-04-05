@@ -19,14 +19,15 @@
         <td>{{$course->year}}</td>
         <td>{{$course->semester}}</td>
         <td>
-            <form action="courses/{{$course->id}}" method="post">
+            <form action="courses_by_semester/{{$course->id}}" method="post">
                 @csrf
                 {{method_field('DELETE')}}
+                {{$course->id}}
                 <input type="submit" value="Delete">
             </form>
         </td>
         <td>
-            <form action="courses/{{$course->id}}/edit" method="get">
+            <form action="courses_by_semester/{{$course->id}}/edit" method="get">
                 @csrf
                 <input type="submit" value="Edit">
             </form>
