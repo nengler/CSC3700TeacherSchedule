@@ -27,13 +27,20 @@ class CourseController extends Controller
     public function show()
     {
     }
-    public function edit()
+    public function edit($id)
     {
+        print("inside edit");
+        $course = course::find($id);
+        return \View::make("courseEdit")->with('course', $course);
     }
     public function update()
     {
     }
-    public function destory()
+    public function destroy($id)
     {
+        $course = course::find($id);
+        $course->delete();
+        print("inside destroy");
+        return redirect("courses");
     }
 }

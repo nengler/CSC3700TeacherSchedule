@@ -39,28 +39,11 @@
 
   <div class="container">
 
-    <div class="row">
-      <a href="courses/create" class="btn btn-success">
-        <span>Add New Class</span></a>
-    </div>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Class</th>
-          <th>Class Id</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        @yield('content')
-      </tbody>
-
-    </table>
+    <tbody>
+      @yield('content')
+    </tbody>
 
   </div>
-
 
 </body>
 
