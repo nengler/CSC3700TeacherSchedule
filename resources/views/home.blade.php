@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.master')
+@section('content')
 
 <head>
     <meta charset="utf-8">
@@ -90,39 +90,7 @@
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/home') }}">Home</a>
-            <a href=""> Resources </a>
-            <a href=""> Overview </a>
-            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-            @else
-            <a href="{{ route('login') }}">Login</a>
 
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
-        <div class="content">
-            <div class="title m-b-md">
-                @if (Auth::check())
-                Hi, {{Auth::user()->name}}!
-                @endif
-
-            </div>
-
-        </div>
-
-    </div>
     <div id="myCarousel" class="carousel slide flex-center moveup" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -159,3 +127,4 @@
 </body>
 
 </html>
+@stop

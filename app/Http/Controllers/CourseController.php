@@ -16,14 +16,12 @@ class CourseController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index()
     {
+        $data = course::all();
+        return \View::make('overview')->with('courses', $data);
     }
-    //public function index()
-    //{
-    //    $data = course::all();
-    //    return \View::make('overview')->with('courses', $data);
-    //}
     public function create()
     {
         return view('courses.create');

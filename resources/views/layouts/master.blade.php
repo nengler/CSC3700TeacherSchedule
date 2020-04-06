@@ -29,13 +29,50 @@
       <div class="navbar-nav">
         <a href="/home" class="nav-item nav-link">Home</a>
         <a href="/reports" class="nav-item nav-link">Reports</a>
-        <a href="/overview" class="nav-item nav-link">Overview</a>
+        <a href="/courses_by_semester" class="nav-item nav-link">Overview</a>
       </div>
       <div class="navbar-nav ml-auto">
         <a href="#" class="nav-item nav-link">Login</a>
       </div>
     </div>
   </nav>
+
+
+  <div class="flex-center position-ref full-height">
+    @if (Route::has('login'))
+    <div class="top-right links">
+      @auth
+      <a href="{{ url('/home') }}">Home</a>
+      <a href=""> Resources </a>
+      <a href=""> Overview </a>
+      <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
+      @else
+      <a href="{{ route('login') }}">Login</a>
+
+      @if (Route::has('register'))
+      <a href="{{ route('register') }}">Register</a>
+      @endif
+      @endauth
+    </div>
+    @endif
+
+    <div class="content">
+      <div class="title m-b-md">
+        @if (Auth::check())
+        Hi, {{Auth::user()->name}}!
+        @endif
+
+      </div>
+
+    </div>
+
+  </div>
+
+
 
   <div class="container">
 
