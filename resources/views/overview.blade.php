@@ -11,6 +11,7 @@
             <th>Class</th>
             <th>Year</th>
             <th>Semester</th>
+            <th>Buttons</th>
         </tr>
     </thead>
     @foreach($courses as $course)
@@ -22,11 +23,8 @@
             <form action="courses_by_semester/{{$course->id}}" method="post">
                 @csrf
                 {{method_field('DELETE')}}
-                {{$course->id}}
                 <input type="submit" value="Delete">
             </form>
-        </td>
-        <td>
             <form action="courses_by_semester/{{$course->id}}/edit" method="get">
                 @csrf
                 <input type="submit" value="Edit">

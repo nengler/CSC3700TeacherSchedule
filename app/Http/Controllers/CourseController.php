@@ -19,11 +19,6 @@ class CourseController extends Controller
     public function index()
     {
     }
-    //public function index()
-    //{
-    //    $data = course::all();
-    //    return \View::make('overview')->with('courses', $data);
-    //}
     public function create()
     {
         return view('courses.create');
@@ -49,5 +44,31 @@ class CourseController extends Controller
     }
     public function destroy($id)
     {
+    }
+
+    public function report()
+    {
+        $courses = course::all();
+        $coursesBySemester = course_by_semester::all();
+        return \View::make("report")->with('courses', $courses)->with('coursesBySemester', $coursesBySemester);
+    }
+
+    public function process_report(Request $req)
+    {
+        $startYear = $req->input("start_year");
+        $endYear = $req->input("end_year");
+        if ($startYear > $endYear) {
+            return redirect('report')->with('failure', 'End year has to be greater than start year');
+        }
+        $courseId = $req->input("class_id");
+        $courses = course_by_semester::where('course_id', $courseId)->whereBetween('year', [$startYear, $endYear])->orderBy('year', 'ASC')->get();
+        $selectedCourse = course::where('id', $courseId)->first();
+        $data = [
+            'courses' => $courses,
+            'selectedCourse' => $selectedCourse,
+            'startYear' => $startYear,
+            'endYear' => $endYear,
+        ];
+        return \View::make("process_report")->with($data);
     }
 }
