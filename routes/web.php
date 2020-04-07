@@ -26,4 +26,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('courses', 'CourseController');
 Route::resource('courses_by_semester', 'CourseBySemesterController');
 Route::get('report', 'CourseController@report');
-Route::post('process_report', 'CourseController@process_report');
+Route::get('process_class_report', 'CourseController@process_class_report');
+Route::get('process_semester_report', 'CourseController@process_semester_report');

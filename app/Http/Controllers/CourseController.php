@@ -53,8 +53,11 @@ class CourseController extends Controller
         return \View::make("report")->with('courses', $courses)->with('coursesBySemester', $coursesBySemester);
     }
 
-    public function process_report(Request $req)
+    public function process_class_report(Request $req)
     {
+        if (empty($req->input("start_year")) || empty($req->input("end_year")) || empty($req->input("class_id"))) {
+            return redirect('report');
+        }
         $startYear = $req->input("start_year");
         $endYear = $req->input("end_year");
         if ($startYear > $endYear) {
@@ -69,6 +72,22 @@ class CourseController extends Controller
             'startYear' => $startYear,
             'endYear' => $endYear,
         ];
-        return \View::make("process_report")->with($data);
+        return \View::make("process_class_report")->with($data);
+    }
+
+    public function process_semester_report(Request $req)
+    {
+        if (empty($req->input("year")) || empty($req->input("semester"))) {
+            return redirect('report');
+        }
+        $year = $req->input("year");
+        $semester = $req->input("semester");
+        $courses = course_by_semester::where('year', $year)->where('semester', $semester)->get();
+        $data = [
+            'year' => $year,
+            'courses' => $courses,
+            'semester' => $semester,
+        ];
+        return \View::make("process_semester_report")->with($data);
     }
 }

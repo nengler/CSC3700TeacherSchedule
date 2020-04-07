@@ -2,6 +2,8 @@
 
 @section('content')
 
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
 @if (session('failure'))
 <div class="alert alert-error">
   {{ session('failure') }}
@@ -10,16 +12,31 @@
 
 <h2 class="text-center p-4">Report Page</h3>
 
-  <form method="post" action="/process_report">
-    @CSRF
-    <label for="class_name">Chose a class</label>
-    <select name="class_id" class="form-control" onchange="myFunction({{$courses}})">
-      @foreach($courses as $course)
-      <option value={{$course->id}}>{{$course->course_id}}</option>
-      @endforeach
-    </select>
+  <input type="radio" name="type-of-report" onchange="myFunction()" value="by-class" checked> By Class</input>
+  <input type="radio" name="type-of-report" onchange="myFunction()" value="by-semester"> By Semester</input>
 
-    <div class="row py-4">
+  <?php
+
+  if (isset($_POST['type-of-report'])) {
+
+    $heyo =  $_POST['type-of-report'];
+    echo $heyo;
+  }
+  ?>
+
+  <form method="post" action="/process_class_report" id="by-class-form">
+    @method('GET')
+    @CSRF
+    <div class="py-2">
+      <label for="class_name">Chose a class</label>
+      <select name="class_id" class="form-control" onchange="myFunction({{$courses}})">
+        @foreach($courses as $course)
+        <option value={{$course->id}}>{{$course->course_id}}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div class="row py-2">
 
 
       <div class="col-6">
@@ -28,7 +45,6 @@
           @for($i = 2010; $i <= now()->year; $i++)
             <option value={{$i}}>{{$i}}</option>
             @endfor
-
         </select>
       </div>
 
@@ -41,8 +57,48 @@
         </select>
       </div>
     </div>
-    <button class="btn btn-primary">Click me </button>
+    <div class="py-2">
+      <button class="btn btn-primary">Click me </button>
+    </div>
 
   </form>
+
+  <form method="post" action="/process_semester_report" id="by-semester-form">
+    @method('GET')
+    @CSRF
+    <div class="py-2">
+      <label>Select Year</label>
+      <select name="year" class="form-control">
+        @for($i = 2010; $i <= now()->year; $i++)
+          <option value={{$i}}>{{$i}}</option>
+          @endfor
+      </select>
+    </div>
+    <div class="py-2">
+      <label>Select Semester</label>
+      <select name="semester" class="form-control">
+        <option value="spring">Spring</option>
+        <option value="fall">Fall</option>
+      </select>
+    </div>
+    <div class="py-2">
+      <button class="btn btn-primary py-2">Click me </button>
+    </div>
+  </form>
+
+  <script>
+    function myFunction() {
+      let classForm = document.getElementById("by-class-form");
+      let semesterForm = document.getElementById("by-semester-form");
+      if (event.target.value === "by-class") {
+        classForm.style.display = "block";
+        semesterForm.style.display = "none";
+
+      } else if (event.target.value === "by-semester") {
+        classForm.style.display = "none";
+        semesterForm.style.display = "block";
+      }
+    }
+  </script>
 
   @stop
