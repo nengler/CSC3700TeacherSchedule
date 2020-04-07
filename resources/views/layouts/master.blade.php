@@ -11,8 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <style type="text/css">
-    .bs-example {
-      margin: 20px;
+    html,
+    body {
+      width: 100%;
     }
 
     .content {
@@ -24,13 +25,62 @@
       height: auto;
     }
 
+    .home-container {
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    .home-centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .navbar {
+      background-color: white;
+      -webkit-box-shadow: 0 8px 6px -6px #999;
+      -moz-box-shadow: 0 8px 6px -6px #999;
+      box-shadow: 0 8px 6px -6px #999;
+      width: 100%;
+    }
+
+    .navbar a {
+      color: #5b5b5b;
+      float: left;
+      padding: 12px;
+      text-align: center;
+      width: 10rem;
+    }
+
+    .navbar a:hover {
+      background-color: #A9A9A9;
+      color: white;
+    }
+
+    .navbar button {
+      color: black;
+    }
+
+    .navbar img {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
     .success {
       color: green;
       padding: 10px;
     }
 
     .title {
-      font-size: 6rem;
+      font-size: 5vw;
+      font-family: geneva;
+      text-shadow: 4px 4px 6px #000000
     }
 
     a.active {
@@ -42,9 +92,11 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md sticky-top">
     @if (Route::has('login'))
-    <a href="#" class="navbar-brand">Brand</a>
+
+    <img src="club-logo.png" alt="logo" />
+
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,9 +108,7 @@
         <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
         <a href="/reports" class="nav-item nav-link {{ active('reports') }}">Reports</a>
         <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
-      </div>
 
-      <div class="navbar-nav ml-auto">
         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -75,7 +125,6 @@
     @endauth
     @endif
   </nav>
-
   @yield('content')
 
 </body>
