@@ -14,71 +14,69 @@
     .bs-example {
       margin: 20px;
     }
+
+    .content {
+      text-align: center;
+    }
+
+    .full {
+      width: 100%;
+      height: auto;
+    }
+
+    .success {
+      color: green;
+      padding: 10px;
+    }
+
+    .title {
+      font-size: 6rem;
+    }
+
+    a.active {
+      background-color: #426ff5;
+      color: white;
+    }
   </style>
 </head>
 
 <body>
 
   <nav class="navbar navbar-expand-md navbar-light bg-light">
+    @if (Route::has('login'))
     <a href="#" class="navbar-brand">Brand</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    @auth
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav">
-        <a href="/home" class="nav-item nav-link">Home</a>
-        <a href="/reports" class="nav-item nav-link">Reports</a>
-        <a href="/courses_by_semester" class="nav-item nav-link">Overview</a>
-      </div>
+
       <div class="navbar-nav ml-auto">
-        <a href="#" class="nav-item nav-link">Login</a>
+        <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
+        <a href="/reports" class="nav-item nav-link {{ active('reports') }}">Reports</a>
+        <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
       </div>
+
+      <div class="navbar-nav ml-auto">
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+        @else
+        <a href="{{ route('login') }}">Login</a>
+        @if (Route::has('register'))
+        <a href="{{ route('register') }}">Register</a>
+        @endif
+      </div>
+
     </div>
+    @endauth
+    @endif
   </nav>
 
-
-  <div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-    <div class="top-right links">
-      @auth
-      <a href="{{ url('/home') }}">Home</a>
-      <a href=""> Resources </a>
-      <a href=""> Overview </a>
-      <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-      </form>
-      @else
-      <a href="{{ route('login') }}">Login</a>
-
-      @if (Route::has('register'))
-      <a href="{{ route('register') }}">Register</a>
-      @endif
-      @endauth
-    </div>
-    @endif
-
-    <div class="content">
-      <div class="title m-b-md">
-        @if (Auth::check())
-        Hi, {{Auth::user()->name}}!
-        @endif
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-  <div class="container">
-
-    @yield('content')
-
-  </div>
+  @yield('content')
 
 </body>
 

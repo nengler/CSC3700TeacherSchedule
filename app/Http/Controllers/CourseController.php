@@ -15,8 +15,6 @@ class CourseController extends Controller
     {
         $this->middleware('auth');
     }
-
-
     public function index()
     {
         $data = course::all();
@@ -29,9 +27,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $course = course::create($request->all());
-
-        print("saved boys");
-        //return redirect('/courses')->with('success', 'course created!');
+        return redirect('overview')->withSuccess('Course Created!');
     }
     public function show()
     {
@@ -47,5 +43,9 @@ class CourseController extends Controller
     }
     public function destroy($id)
     {
+        $course = course::find($id);
+        $course->delete();
+        print("inside destroy");
+        return redirect("overview");
     }
 }
