@@ -12,27 +12,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+
                 <th>Class</th>
                 <th>Class ID</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
         </thead>
         @foreach($courses as $course)
         <tr>
-            <td>{{$course->id}}</td>
+
             <td>{{$course->course_title}}</td>
             <td>{{$course->course_id}}</td>
             <td>
                 <form action="courses/{{$course->id}}" method="post">
                     @csrf
                     {{method_field('DELETE')}}
-                    <input type="submit" value="Delete">
+                    <button class="btn btn-danger" type="submit" value="Delete">Delete</button>
                 </form>
             </td>
             <td>
                 <form action="courses/{{$course->id}}/edit" method="get">
                     @csrf
-                    <input type="submit" value="Edit">
+                    <button class="btn btn-primary" type="submit" value="Edit">Edit</button>
                 </form>
             </td>
 
@@ -53,6 +55,8 @@
                 <th>Class</th>
                 <th>Year</th>
                 <th>Semester</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
         </thead>
         @foreach($courses_by_sem as $course)
@@ -64,13 +68,13 @@
                 <form action="courses_by_semester/{{$course->id}}" method="post">
                     @csrf
                     {{method_field('DELETE')}}
-                    <input type="submit" value="Delete">
+                    <button class="btn btn-danger" type="submit" value="Delete">Delete</button>
                 </form>
             </td>
             <td>
                 <form action="courses_by_semester/{{$course->id}}/edit" method="get">
                     @csrf
-                    <input type="submit" value="Edit">
+                    <button class="btn btn-primary" type="submit" value="Edit">Edit</button>
                 </form>
             </td>
 

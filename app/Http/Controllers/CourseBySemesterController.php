@@ -31,11 +31,34 @@ class CourseBySemesterController extends Controller
         $course_by_semester = course_by_semester::create($request->all());
         return redirect('overview')->withSuccess('Course by Semester Created!');
     }
+
+    public function edit($id)
+    {
+        $course_by_semester = course_by_semester::find($id);
+        $courses = course::all();
+
+        $data = ['courses' => $courses, 'course_by_semester' => $course_by_semester];
+        return view('course_by_semester.edit')->with($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $course_by_semester = course_by_semester::find($id);
+        $course_by_semester->course_id = $request->input("course_id");
+        $course_by_semester->location = $request->input("class_location");
+        $course_by_semester->number_of_students = $request->input("number_of_students");
+        $course_by_semester->teacher = $request->input("teacher");
+        $course_by_semester->semester = $request->input("semester");
+        $course_by_semester->year = $request->input("year");
+        $course_by_semester->save();
+
+        return redirect('overview')->withSuccess("Course by Semester Updated!");
+    }
     public function destroy($id)
     {
         $course = course_by_semester::find($id);
         $course->delete();
-        print("inside destroy");
+
         return redirect("overview");
     }
 }

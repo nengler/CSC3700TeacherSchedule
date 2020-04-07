@@ -34,18 +34,23 @@ class CourseController extends Controller
     }
     public function edit($id)
     {
-        print("inside edit");
         $course = course::find($id);
-        return \View::make("courseEdit")->with('course', $course);
+        //return \View::make("courseEdit")->with('course', $course);
+        return view('courses.edit')->with('course', $course);
     }
-    public function update()
+    public function update(Request $request, $id)
     {
+        $course = course::find($id);
+        $course->course_title = $request->input("title");
+        $course->course_id = $request->input("class_id");
+        $course->save();
+        return redirect('overview')->withSuccess("Course Updated!");
     }
     public function destroy($id)
     {
         $course = course::find($id);
         $course->delete();
-        print("inside destroy");
+
         return redirect("overview");
     }
 }
