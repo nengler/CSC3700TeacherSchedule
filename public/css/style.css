@@ -1,3 +1,7 @@
-#by-semester-form {
+.do-show {
+    display: block;
+}
+
+.do-not-show {
     display: none;
 }

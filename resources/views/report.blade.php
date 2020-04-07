@@ -24,7 +24,7 @@
   }
   ?>
 
-  <form method="post" action="/process_class_report" id="by-class-form">
+  <form method="post" action="/process_class_report" class="do-show" id="by-class-form">
     @method('GET')
     @CSRF
     <div class="py-2">
@@ -63,7 +63,7 @@
 
   </form>
 
-  <form method="post" action="/process_semester_report" id="by-semester-form">
+  <form method="post" action="/process_semester_report" class="do-not-show" id="by-semester-form">
     @method('GET')
     @CSRF
     <div class="py-2">
@@ -82,7 +82,7 @@
       </select>
     </div>
     <div class="py-2">
-      <button class="btn btn-primary py-2">Click me </button>
+      <button class="btn btn-primary">Click me </button>
     </div>
   </form>
 
@@ -91,12 +91,12 @@
       let classForm = document.getElementById("by-class-form");
       let semesterForm = document.getElementById("by-semester-form");
       if (event.target.value === "by-class") {
-        classForm.style.display = "block";
-        semesterForm.style.display = "none";
+        classForm.className = ("do-show");
+        semesterForm.className = ("do-not-show");
 
       } else if (event.target.value === "by-semester") {
-        classForm.style.display = "none";
-        semesterForm.style.display = "block";
+        classForm.className = ("do-not-show");
+        semesterForm.className = ("do-show");
       }
     }
   </script>

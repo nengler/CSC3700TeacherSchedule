@@ -9,7 +9,7 @@
 <h3 class="text-center p-3">Selected {{$year}} {{ucfirst($semester)}}</h3>
 
 <table class="table table-striped">
-  <thead class=" thead-dark">
+  <thead class="thead-dark">
     <tr>
       <th>Teacher</th>
       <th>Location</th>
