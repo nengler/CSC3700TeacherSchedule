@@ -10,18 +10,23 @@
   </ul>
 </div><br />
 @endif
-<form method="post" action="{{ route('courses.store') }}">
-  @csrf
-  <div class="form-group">
-    <label for="course_id">Course ID:</label>
-    <input type="text" class="form-control" name="course_id" />
-  </div>
+<div class="container">
+  <form method="post" action="{{ route('courses.store') }}">
+    @csrf
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="course_id">Course ID:</label>
+        <input type="text" class="form-control" name="course_id" />
+      </div>
 
-  <div class="form-group">
-    <label for="course_title">Course Title:</label>
-    <input type="text" class="form-control" name="course_title" />
-  </div>
+      <div class="form-group col-md-4">
+        <label for="course_title">Course Title:</label>
+        <input type="text" class="form-control" name="course_title" />
+      </div>
+    </div>
 
-  <button type="submit" class="btn btn-primary-outline">Add contact</button>
-</form>
+
+    <button type="submit" class="btn btn-primary">Add Course</button>
+  </form>
+</div>
 @stop
