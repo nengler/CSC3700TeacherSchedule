@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+<br />
 <div class="container content">
     @if(session('success'))
     <h2 class="success">{{session('success')}}</h2>
@@ -9,8 +10,8 @@
             <span>Add New Course</span></a>
     </div>
     <h2>Courses</h2>
-    <table class="table">
-        <thead>
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
 
                 <th>Class</th>
@@ -49,8 +50,8 @@
             <span>Add New Course In Semester</span></a>
     </div>
     <h2>Courses By Semester</h2>
-    <table class="table">
-        <thead>
+    <table class="table table-striped">
+        <thead class="thead-dark">
             <tr>
                 <th>Class</th>
                 <th>Year</th>
