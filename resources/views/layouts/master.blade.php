@@ -110,7 +110,7 @@
 
       <div class="navbar-nav ml-auto">
         <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
-        <a href="/reports" class="nav-item nav-link {{ active('reports') }}">Reports</a>
+        <a href="/report" class="nav-item nav-link {{ active('report') }}">Reports</a>
         <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
 
         <a href="{{ route('logout') }}" onclick="event.preventDefault();

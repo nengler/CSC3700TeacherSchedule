@@ -10,7 +10,7 @@
     </ul>
 </div><br />
 @endif
-<div class="container">
+<div class="container" style="padding-top: 2rem">
     <h2>Editing Course By Semester</h2>
     <form action="{{ route('courses_by_semester.update', $course_by_semester->id) }}" method='POST'>
         @method('PUT')

@@ -10,7 +10,7 @@
   </ul>
 </div><br />
 @endif
-<div class="container" <form method="post" action="{{ route('courses_by_semester.store') }}">
+<div class="container" <form method="post" action="{{ route('courses_by_semester.store') }}" style="padding-top: 2rem">
 
   @csrf
   <div class="form-row">

@@ -10,7 +10,7 @@
   </ul>
 </div><br />
 @endif
-<div class="container">
+<div class="container" style="padding-top: 2rem">
   <form method="post" action="{{ route('courses.store') }}">
     @csrf
     <div class="form-row">
