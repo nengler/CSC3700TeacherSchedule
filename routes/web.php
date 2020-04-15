@@ -28,3 +28,4 @@ Route::resource('courses_by_semester', 'CourseBySemesterController');
 Route::get('report', 'CourseController@report');
 Route::get('process_class_report', 'CourseController@process_class_report');
 Route::get('process_semester_report', 'CourseController@process_semester_report');
+Route::get('overview', 'CourseBySemesterController@overview');
