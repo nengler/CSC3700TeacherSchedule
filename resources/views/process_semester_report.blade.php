@@ -11,6 +11,8 @@
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
+      <th>Class ID</th>
+      <th>Class Name</th>
       <th>Teacher</th>
       <th>Location</th>
       <th>Number of Students</th>
@@ -19,6 +21,8 @@
   <tbody>
     @foreach($courses as $course)
     <tr>
+      <td>{{$course->course_id}}</td>
+      <td>{{$course->course_title}}</td>
       <td>{{$course->teacher}}</td>
       <td>{{$course->location}}</td>
       <td>{{$course->number_of_students}}</td>

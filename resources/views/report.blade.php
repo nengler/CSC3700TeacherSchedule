@@ -11,18 +11,14 @@
 @endif
 
 <h2 class="text-center p-4">Report Page</h3>
-
-  <input type="radio" name="type-of-report" onchange="myFunction()" value="by-class" checked> By Class</input>
-  <input type="radio" name="type-of-report" onchange="myFunction()" value="by-semester"> By Semester</input>
-
-  <?php
-
-  if (isset($_POST['type-of-report'])) {
-
-    $heyo =  $_POST['type-of-report'];
-    echo $heyo;
-  }
-  ?>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active" value="by-class">
+      <input type="radio" name="type-of-report" onchange="myFunction()" checked checked autocomplete="off"> By Class
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="type-of-report" onchange="myFunction()" autocomplete="off"> By Semester
+    </label>
+  </div>
 
   <form method="post" action="/process_class_report" class="do-show" id="by-class-form">
     @method('GET')
@@ -66,20 +62,22 @@
   <form method="post" action="/process_semester_report" class="do-not-show" id="by-semester-form">
     @method('GET')
     @CSRF
-    <div class="py-2">
-      <label>Select Year</label>
-      <select name="year" class="form-control">
-        @for($i = 2010; $i <= now()->year; $i++)
-          <option value={{$i}}>{{$i}}</option>
-          @endfor
-      </select>
-    </div>
-    <div class="py-2">
-      <label>Select Semester</label>
-      <select name="semester" class="form-control">
-        <option value="spring">Spring</option>
-        <option value="fall">Fall</option>
-      </select>
+    <div class="row py-2">
+      <div class="col-6">
+        <label>Select Year</label>
+        <select name="year" class="form-control">
+          @for($i = 2010; $i <= now()->year; $i++)
+            <option value={{$i}}>{{$i}}</option>
+            @endfor
+        </select>
+      </div>
+      <div class="col-6">
+        <label>Select Semester</label>
+        <select name="semester" class="form-control">
+          <option value="spring">Spring</option>
+          <option value="fall">Fall</option>
+        </select>
+      </div>
     </div>
     <div class="py-2">
       <button class="btn btn-primary">Click me </button>
@@ -90,11 +88,10 @@
     function myFunction() {
       let classForm = document.getElementById("by-class-form");
       let semesterForm = document.getElementById("by-semester-form");
-      if (event.target.value === "by-class") {
+      if (event.target.innerText === "By Class") {
         classForm.className = ("do-show");
         semesterForm.className = ("do-not-show");
-
-      } else if (event.target.value === "by-semester") {
+      } else if (event.target.innerText === "By Semester") {
         classForm.className = ("do-not-show");
         semesterForm.className = ("do-show");
       }

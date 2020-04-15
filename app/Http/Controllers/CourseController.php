@@ -82,7 +82,16 @@ class CourseController extends Controller
         }
         $year = $req->input("year");
         $semester = $req->input("semester");
-        $courses = course_by_semester::where('year', $year)->where('semester', $semester)->get();
+        //$courses = course_by_semester::where('year', $year)->where('semester', $semester)->get();
+        $courses = course_by_semester::join('courses', 'courses.id', '=', 'course_by_semesters.course_id')
+            ->select(
+                'courses.course_title',
+                'courses.course_id',
+                'course_by_semesters.teacher',
+                'course_by_semesters.location',
+                'course_by_semesters.number_of_students'
+            )
+            ->where('year', $year)->where('semester', $semester)->get();
         $data = [
             'year' => $year,
             'courses' => $courses,
