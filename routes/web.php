@@ -27,13 +27,10 @@ Route::get('/reports', 'HomeController@showReport');
 
 Route::resource('courses', 'CourseController');
 Route::resource('courses_by_semester', 'CourseBySemesterController');
-<<<<<<< HEAD
 
 Route::get('/index', 'PagesController@index'); // localhost:8000/
 Route::post('/uploadFile', 'PagesController@uploadFile');
-=======
 Route::get('report', 'CourseController@report');
 Route::get('process_class_report', 'CourseController@process_class_report');
 Route::get('process_semester_report', 'CourseController@process_semester_report');
 Route::get('overview', 'CourseBySemesterController@overview');
->>>>>>> 457618502ff46ba920c449d4e78898a4e5ff1c64

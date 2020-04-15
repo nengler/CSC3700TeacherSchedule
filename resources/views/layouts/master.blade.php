@@ -96,10 +96,6 @@
       background-color: #426ff5;
       color: white;
     }
-
-    .navbar-togger-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-    }
   </style>
 
 </head>
@@ -114,45 +110,31 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
+    @auth
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav">
 
+      <div class="navbar-nav ml-auto">
         <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
-        <a href="/reports" class="nav-link {{ active('reports') }}">Reports</a></li>
+        <a href="/report" class="nav-item nav-link {{ active('report') }}">Reports</a>
         <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
 
-      </div>
-
-      @auth
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <div class="navbar-nav ml-auto">
-          <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
-          <a href="/report" class="nav-item nav-link {{ active('report') }}">Reports</a>
-          <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
-
-          <a href="{{ route('logout') }}" onclick="event.preventDefault();
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-          </form>
-          @else
-          <a href="{{ route('login') }}">Login</a>
-          @if (Route::has('register'))
-          <a href="{{ route('register') }}">Register</a>
-          @endif
-        </div>
-
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+        @else
+        <a href="{{ route('login') }}">Login</a>
+        @if (Route::has('register'))
+        <a href="{{ route('register') }}">Register</a>
+        @endif
       </div>
-      @endauth
-      @endif
+
+    </div>
+    @endauth
+    @endif
   </nav>
-  <div class="container">
-    <p id="output"></p>
 
-    @yield('content')
-
-  </div>
   @yield('content')
 
 </body>

@@ -1,19 +1,5 @@
 @extends('layouts.master')
 @section('content')
-<<<<<<< HEAD
-<html>
-<head>
-<title> OverView </title>
- <script type = "text/javascript">
-    $(document).on('click','a',function(){
-      $(this).addClass('active')
-    });
- </script>
-<div class="row">
-    <a href="courses/create" class="btn btn-success">
-        <span>Add New Class</span></a>
-</div>
-=======
 <br />
 <div class="container content">
     @if(session('success'))
@@ -27,7 +13,6 @@
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
->>>>>>> 457618502ff46ba920c449d4e78898a4e5ff1c64
 
                 <th>Class</th>
                 <th>Class ID</th>
@@ -55,12 +40,6 @@
             </td>
 
         </tr>
-<<<<<<< HEAD
-    </thead>
-   
-</table>
-</html>
-=======
         @endforeach
     </table>
 
@@ -104,5 +83,4 @@
         @endforeach
     </table>
 </div>
->>>>>>> 457618502ff46ba920c449d4e78898a4e5ff1c64
 @stop
