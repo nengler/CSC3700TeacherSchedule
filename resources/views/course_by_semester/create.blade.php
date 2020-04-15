@@ -26,7 +26,7 @@
             @endforeach
           </select>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
           <label for="semester">Semester:</label>
           <select name="semester" class="form-control">
             <option value="spring">Spring</option>
@@ -42,7 +42,7 @@
           <input type="text" class="form-control" name="location" />
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-6">
           <label for="number_of_students">Number of students:</label>
           <input type="number" class="form-control" name="number_of_students" />
         </div>
@@ -56,7 +56,7 @@
         </div>
 
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
           <label for="year">Year:</label>
           <input type="number" class="form-control" name="year" />
         </div>

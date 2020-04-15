@@ -5,7 +5,7 @@
     @if(session('success'))
     <h2 class="success">{{session('success')}}</h2>
     @endif
-    <div class="row">
+    <div class="text-left">
         <a href="courses/create" class="btn btn-success">
             <span>Add New Course</span></a>
     </div>
@@ -45,7 +45,7 @@
 
     <br />
 
-    <div class="row">
+    <div class="text-left">
         <a href="courses_by_semester/create" class="btn btn-success">
             <span>Add New Course In Semester</span></a>
     </div>
