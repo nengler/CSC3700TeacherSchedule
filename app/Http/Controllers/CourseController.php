@@ -15,15 +15,11 @@ class CourseController extends Controller
     {
         $this->middleware('auth');
     }
-
     public function index()
     {
+        $data = course::all();
+        return \View::make('overview')->with('courses', $data);
     }
-    //public function index()
-    //{
-    //    $data = course::all();
-    //    return \View::make('overview')->with('courses', $data);
-    //}
     public function create()
     {
         return view('courses.create');
@@ -31,23 +27,30 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $course = course::create($request->all());
-
-        print("saved boys");
-        //return redirect('/courses')->with('success', 'course created!');
+        return redirect('overview')->withSuccess('Course Created!');
     }
     public function show()
     {
     }
     public function edit($id)
     {
-        print("inside edit");
         $course = course::find($id);
-        return \View::make("courseEdit")->with('course', $course);
+        //return \View::make("courseEdit")->with('course', $course);
+        return view('courses.edit')->with('course', $course);
     }
-    public function update()
+    public function update(Request $request, $id)
     {
+        $course = course::find($id);
+        $course->course_title = $request->input("title");
+        $course->course_id = $request->input("class_id");
+        $course->save();
+        return redirect('overview')->withSuccess("Course Updated!");
     }
     public function destroy($id)
     {
+        $course = course::find($id);
+        $course->delete();
+
+        return redirect("overview");
     }
 }
