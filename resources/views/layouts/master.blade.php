@@ -12,9 +12,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <style type="text/css">
     .bs-example {
-      margin: 20px;
-    }
+      margin: 20px;}
+      a.active {  
+  background-color: #426ff5;
+  color: white;
+}
   </style>
+
 </head>
 
 <body>
@@ -24,12 +28,13 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav">
-        <a href="/home" class="nav-item nav-link">Home</a>
-        <a href="/reports" class="nav-item nav-link">Reports</a>
-        <a href="/overview" class="nav-item nav-link">Overview</a>
+      
+        <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a> 
+        <a href="/reports" class="nav-link {{ active('reports') }}">Reports</a></li> 
+        <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
+      
       </div>
       <div class="navbar-nav ml-auto">
         <a href="#" class="nav-item nav-link">Login</a>
@@ -38,6 +43,7 @@
   </nav>
 
   <div class="container">
+  <p id="output"></p>
 
     @yield('content')
 

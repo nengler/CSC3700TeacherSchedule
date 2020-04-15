@@ -10,6 +10,12 @@
   </ul>
 </div><br />
 @endif
+Import CSV File
+<form method='post' action='/uploadFile' enctype='multipart/form-data' >
+       {{ csrf_field() }}
+       <input type='file' name='file' >
+       <input type='submit' name='submit' value='Import'>
+     </form>
 <form method="post" action="{{ route('courses_by_semester.store') }}">
 
   @csrf

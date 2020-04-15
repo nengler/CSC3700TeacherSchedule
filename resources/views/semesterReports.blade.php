@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-<p>This is inside semester reports.</p>
+<html>
+<head>
+    <title> Semester Reports </title>
+</head>
 
+<p>This is inside semester reports.</p>
+</html>
 @stop

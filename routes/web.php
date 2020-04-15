@@ -21,7 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/overview', 'HomeController@showOverview');
+Route::get('/reports', 'HomeController@showReport');
 
 
 Route::resource('courses', 'CourseController');
 Route::resource('courses_by_semester', 'CourseBySemesterController');
+
+Route::get('/index', 'PagesController@index'); // localhost:8000/
+Route::post('/uploadFile', 'PagesController@uploadFile');

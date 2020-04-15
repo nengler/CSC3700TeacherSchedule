@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function showOverview(){
+        return view('overview');
+    }
+    public function showReport(){
+        return view('semesterReports');
+    }
 }
