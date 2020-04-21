@@ -26,6 +26,9 @@ class CourseController extends Controller
     }
     public function store(Request $request)
     {
+        if (empty($request->input("course_id")) || empty($request->input("course_title"))) {
+            return redirect('courses/create')->withErrors("Please Fill out all fields");
+        }
         $course = course::create($request->all());
         return redirect('overview')->withSuccess('Course Created!');
     }
@@ -49,6 +52,7 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $course = course::find($id);
+        $course->course_by_semesters()->delete();
         $course->delete();
 
         return redirect("overview");

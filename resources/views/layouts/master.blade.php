@@ -103,10 +103,9 @@
 <body>
 
   <nav class="navbar navbar-expand-md sticky-top">
-    @if (Route::has('login'))
-
     <img src="club-logo.png" alt="logo" />
 
+    @if (Route::has('login'))
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -116,8 +115,10 @@
       <div class="navbar-nav ml-auto">
         <a href="/home" class="nav-item nav-link {{ active('home') }}">Home</a>
         <a href="/report" class="nav-item nav-link {{ active('report') }}">Reports</a>
-        <a href="/overview" class="nav-item nav-link {{ active('overview') }}">Overview</a>
-
+        @if(Auth::user()->admin)
+        <a href="/overview" class="nav-item nav-link {{ active('overview') }} 
+                            {{ active('courses/create') }} {{ active('courses_by_semester/create') }}">Overview</a>
+        @endif
         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"> {{ __('Logout') }} </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

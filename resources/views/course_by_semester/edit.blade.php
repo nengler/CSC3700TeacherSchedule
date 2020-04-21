@@ -58,8 +58,6 @@
                 <input type="text" class="form-control" name="teacher" value="{{$course_by_semester->teacher}}" />
             </div>
 
-
-
             <div class="form-group  col-md-4">
                 <label for="year">Year:</label>
                 <input type="number" class="form-control" name="year" value="{{$course_by_semester->year}}" />

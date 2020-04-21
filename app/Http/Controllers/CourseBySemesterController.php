@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\course_by_semester;
 use App\course;
+use Illuminate\Support\Facades\Auth;
+
 
 class CourseBySemesterController extends Controller
 {
@@ -15,10 +17,15 @@ class CourseBySemesterController extends Controller
     }
     public function overview()
     {
-        $course_by_sem = course_by_semester::leftJoin('courses', 'courses.id', '=', 'course_by_semesters.course_id')
-            ->select('courses.*', 'course_by_semesters.year', 'course_by_semesters.semester', 'course_by_semesters.id')->get();
-        $courses = course::all();
-        return \View::make('overview')->with('courses_by_sem', $course_by_sem)->with('courses', $courses);
+        $user = Auth::user();
+        if ($user->admin == 0) {
+            return view('home');
+        } else {
+            $course_by_sem = course_by_semester::leftJoin('courses', 'courses.id', '=', 'course_by_semesters.course_id')
+                ->select('courses.*', 'course_by_semesters.year', 'course_by_semesters.semester', 'course_by_semesters.id')->get();
+            $courses = course::all();
+            return \View::make('overview')->with('courses_by_sem', $course_by_sem)->with('courses', $courses);
+        }
     }
     public function create()
     {
@@ -28,8 +35,15 @@ class CourseBySemesterController extends Controller
 
     public function store(Request $request)
     {
-        $course_by_semester = course_by_semester::create($request->all());
-        return redirect('overview')->withSuccess('Course by Semester Created!');
+        if (
+            empty($request->input("course_id")) || empty($request->input("location")) || empty($request->input("number_of_students"))
+            || empty($request->input("teacher")) || empty($request->input("semester")) || empty($request->input("year"))
+        ) {
+            return redirect('courses_by_semester/create')->withErrors("Please Fill out all fields");;
+        } else {
+            $course_by_semester = course_by_semester::create($request->all());
+            return redirect('overview')->withSuccess('Course by Semester Created!');
+        }
     }
 
     public function edit($id)
